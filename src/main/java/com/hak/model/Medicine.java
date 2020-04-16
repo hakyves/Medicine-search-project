@@ -34,7 +34,7 @@ public class Medicine {
 
 	public Medicine() {}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

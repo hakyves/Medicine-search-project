@@ -25,7 +25,7 @@ public class MedicalShopService  {
     	medicShopRepo.findAll().iterator().forEachRemaining(list::add);
 		return list;
 	}
-	public MedicalShop getMedicalShopById (long id) {
+	public MedicalShop findById (long id) {
 		return medicShopRepo.findById(id).get();
 	}
 	public void saveOrUpdateShop(MedicalShop medicalShop) {

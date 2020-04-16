@@ -24,7 +24,7 @@ public class MedicalShopController {
 	}
 	@RequestMapping(value="/medicalShop/{id}", method = RequestMethod.GET)
 	public MedicalShop getOneShop(@PathVariable(value = "id") Long id) {
-		return medicalShopService.getMedicalShopById(id);
+		return medicalShopService.findById(id);
 	}
 
 	@RequestMapping(value="/AddMedicalShop", method = RequestMethod.POST)
@@ -32,7 +32,14 @@ public class MedicalShopController {
 		return medicalShopService.save(medicalShop);
 	}
 	@RequestMapping(value="/UpdateMedicalShop", method = RequestMethod.PUT)
-	public MedicalShop updateMedicalShop(@RequestBody MedicalShop medicalShop) {
+	public MedicalShop updateMedicalShop(@RequestBody MedicalShop medicalShop, @PathVariable("id") Long id) {
+		MedicalShop m = medicalShopService.findById(id);
+		m.setShopName(medicalShop.getShopName());
+		m.setAddress(medicalShop.getAddress());
+		m.setEmail(medicalShop.getEmail());
+		m.setPassword(medicalShop.getPassword());
+		m.setUsername(medicalShop.getUsername());
+		m.setOpen247(medicalShop.isOpen247());
 		return medicalShopService.save(medicalShop);
 	}
 	@RequestMapping(value="/deleteshop/{id}", method = RequestMethod.DELETE)

@@ -2,7 +2,7 @@ package com.hak.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class MedicineService {
 	public void saveOrUpdate(Medicine medicine) {
   	 medirepo.save(medicine) ;
 	}
-    public Medicine getMedicineById(Long medId) {
+    public Medicine findById(Long medId) {
     	return medirepo.findById(medId).get();
     }
     public void deleteById(Long medId) {

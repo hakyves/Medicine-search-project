@@ -1,6 +1,7 @@
 package com.hak.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,10 +31,16 @@ public class MedicineController {
 		 medicineservice.saveOrUpdate(medicine);
 		 return medicine;	
 	}
-	@PutMapping("/medicine/{id}")
-	public Medicine updateMedicine(@RequestBody Medicine medicine) {
-	 medicineservice.saveOrUpdate(medicine);
-	 return medicine;
+	@PutMapping("/updatemedicine/{id}")
+	public Medicine updateMedicine(@RequestBody Medicine medicine,@PathVariable("id") Long id) {
+	Medicine m = medicineservice.findById(id);
+	
+	m.setCode(medicine.getCode());
+	m.setName(medicine.getName());
+	m.setPrice(medicine.getPrice());
+	m.setQty(medicine.getQty());
+	medicineservice.saveOrUpdate(m);
+	 return m;
 	}
 
 	@DeleteMapping("/medicinedelete/{id}")
