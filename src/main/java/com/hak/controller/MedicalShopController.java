@@ -27,7 +27,7 @@ public class MedicalShopController {
 		return medicalShopService.getMedicalShopById(id);
 	}
 
-	@RequestMapping("/AddMedicalShop")
+	@RequestMapping(value="/AddMedicalShop", method = RequestMethod.POST)
 	public MedicalShop addMedicalShop(@RequestBody MedicalShop medicalShop) {
 		return medicalShopService.save(medicalShop);
 	}
@@ -36,7 +36,8 @@ public class MedicalShopController {
 		return medicalShopService.save(medicalShop);
 	}
 	@RequestMapping(value="/deleteshop/{id}", method = RequestMethod.DELETE)
-	public void deleteOneShop(@PathVariable(value= "id") Long id) {
-		medicalShopService.delete(id);
+	public void deleteOneShop(@PathVariable String id) {
+		Long shopId = Long.parseLong(id);
+		medicalShopService.deleteById(shopId);;
 	}
 }

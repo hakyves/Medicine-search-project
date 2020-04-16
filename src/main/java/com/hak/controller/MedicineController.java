@@ -35,9 +35,11 @@ public class MedicineController {
 	 medicineservice.saveOrUpdate(medicine);
 	 return medicine;
 	}
+
 	@DeleteMapping("/medicinedelete/{id}")
-	public void deleteMedicine(Integer id) {
-		medicineservice.delete(id);
+	public void deleteMedicine(@PathVariable String id) {
+		Long medId = Long.parseLong(id);
+		medicineservice.deleteById(medId);
 	}
 
 }

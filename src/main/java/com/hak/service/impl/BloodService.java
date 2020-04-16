@@ -27,10 +27,10 @@ public class BloodService {
 	    public Blood getBloodById(long id) {
 	    	return bloodRepo.findById(id).get();	
 	    }
-	    public void delete(long id) {
-	    	bloodRepo.deleteById(id);
+	    public void deleteById(Long bloodId) {
+	    	bloodRepo.deleteById(bloodId);
 	    }
-	    public void update(Blood blood, long id) {
+	    public void update(Blood blood, Long bloodId) {
 	    	bloodRepo.save(blood);
 	    }
 

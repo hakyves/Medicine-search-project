@@ -25,13 +25,13 @@ public class MedicineService {
 	public void saveOrUpdate(Medicine medicine) {
   	 medirepo.save(medicine) ;
 	}
-    public Medicine getMedicineById(int id) {
-    	return medirepo.findById(id).get();
+    public Medicine getMedicineById(Long medId) {
+    	return medirepo.findById(medId).get();
     }
-    public void delete(Integer id) {
-    	medirepo.deleteById(id);
+    public void deleteById(Long medId) {
+    	medirepo.deleteById(medId);;
     }
-    public void update(Medicine medicine, int id) {
+    public void update(Medicine medicine, Long medId) {
     	medirepo.save(medicine);
     }
 }

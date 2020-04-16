@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 	public class BloodBank {
 		@Id
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
-		private long id;
+		private Long id;
 		@Column
 		private String bloodBankName;
 		@Column
@@ -33,11 +33,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 		
 		public BloodBank() {}
 
-		public long getId() {
+		public Long getId() {
 			return id;
 		}
 
-		public void setId(long id) {
+		public void setId(Long id) {
 			this.id = id;
 		}
 

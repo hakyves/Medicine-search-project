@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Medicine {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	@Column
 	private String name;
 	@Column
@@ -38,7 +38,7 @@ public class Medicine {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

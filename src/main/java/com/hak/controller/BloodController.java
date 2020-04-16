@@ -31,8 +31,9 @@ public class BloodController {
 		return bloodService.getBloodById(id);
 	}
 	@DeleteMapping("/blooddelete/{id}")
-	private void deleteBloodById(@PathVariable("id")long id) {
-		bloodService.delete(id);
+	private void deleteBloodById(@PathVariable String id) {
+		Long bloodId = Long.parseLong(id);
+		bloodService.deleteById(bloodId);
 	}
 	@PostMapping("/Addblood")
 	public Blood saveBlood(@RequestBody Blood blood) {
