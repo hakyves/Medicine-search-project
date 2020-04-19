@@ -30,7 +30,7 @@ public class BloodBankController {
 	
 	@GetMapping("/bloodBank/{id}")
 	private BloodBank getBloodBankById(@PathVariable("id") long id) {
-		return bloodBankService.getBloodBankById(id);
+		return bloodBankService.findById(id);
 	}
 	@DeleteMapping("/bloodBankdelete/{id}")
 	private void deleteBloodBankById(@PathVariable String id) {
@@ -43,9 +43,14 @@ public class BloodBankController {
 		return bloodBank;
 	}
 	@PutMapping("/bloodBankupdate/{id}")
-	public BloodBank update(@RequestBody BloodBank bloodBank) {
-		bloodBankService.saveOrUpdate(bloodBank);
-		return bloodBank;
+	public BloodBank update(@RequestBody BloodBank bloodBank, @PathVariable("id") Long id) {
+		BloodBank bld = bloodBankService.findById(id);
+		bld.setBloodBankName(bloodBank.getBloodBankName());
+		bld.setAddress(bloodBank.getAddress());
+
+		bld.setOpen247(bloodBank.isOpen247());
+		bloodBankService.saveOrUpdate(bld);
+		return bld;
 	}
 
 }

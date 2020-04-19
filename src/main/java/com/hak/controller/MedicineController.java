@@ -48,5 +48,14 @@ public class MedicineController {
 		Long medId = Long.parseLong(id);
 		medicineservice.deleteById(medId);
 	}
-
+//	@RequestMapping(value="/medicines/{name}", method = RequestMethod.GET)
+//	public List<Medicine> findByName(@RequestBody Medicine medicine,@PathVariable("name") String name/*,@PathVariable("address") String address*/){
+//		List <Medicine> m = (List<Medicine>) medicineservice.findByName(name);	 
+//		 return m;
+//	}
+	@RequestMapping(value="/medicines/{name}", method = RequestMethod.GET)
+	public List<Medicine> findByName(Medicine medicine,@PathVariable("name") String name/*,@PathVariable("address") String address*/){
+		List <Medicine> m = (List<Medicine>) medicineservice.findByName(name);	 
+		 return m;
+	}
 }

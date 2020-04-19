@@ -22,7 +22,7 @@ public class BloodService {
 		return list;
 	    }
 	    public void saveOrUpdate(Blood blood) {
-		bloodRepo.save(blood) ;
+		 bloodRepo.save(blood) ;
 		}
 	    public Blood getBloodById(long id) {
 	    	return bloodRepo.findById(id).get();	
@@ -32,6 +32,9 @@ public class BloodService {
 	    }
 	    public void update(Blood blood, Long bloodId) {
 	    	bloodRepo.save(blood);
+	    }
+	    public Blood findById(Long id) {
+	    	return bloodRepo.findById(id).get();
 	    }
 
 

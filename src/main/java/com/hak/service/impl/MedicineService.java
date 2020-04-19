@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hak.model.Medicine;
+import com.hak.model.*;
 import com.hak.repo.MedicineRepo;
 
 @Service(value = "medicineservice")
@@ -33,5 +34,12 @@ public class MedicineService {
     }
     public void update(Medicine medicine, Long medId) {
     	medirepo.save(medicine);
+    }
+    public List<Medicine> findByName(String name) {
+    
+    	List<Medicine> lst= medirepo.findByName(name);
+    	
+    	return  lst;
+    	
     }
 }

@@ -31,16 +31,13 @@ public class MedicalShopController {
 	public MedicalShop addMedicalShop(@RequestBody MedicalShop medicalShop) {
 		return medicalShopService.save(medicalShop);
 	}
-	@RequestMapping(value="/UpdateMedicalShop", method = RequestMethod.PUT)
+	@RequestMapping(value="/UpdateMedicalShop/{id}", method = RequestMethod.PUT)
 	public MedicalShop updateMedicalShop(@RequestBody MedicalShop medicalShop, @PathVariable("id") Long id) {
 		MedicalShop m = medicalShopService.findById(id);
 		m.setShopName(medicalShop.getShopName());
 		m.setAddress(medicalShop.getAddress());
-		m.setEmail(medicalShop.getEmail());
-		m.setPassword(medicalShop.getPassword());
-		m.setUsername(medicalShop.getUsername());
 		m.setOpen247(medicalShop.isOpen247());
-		return medicalShopService.save(medicalShop);
+		return medicalShopService.save(m);
 	}
 	@RequestMapping(value="/deleteshop/{id}", method = RequestMethod.DELETE)
 	public void deleteOneShop(@PathVariable String id) {

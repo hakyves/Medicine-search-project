@@ -21,7 +21,7 @@ public class BloodBankService {
 	    public void saveOrUpdate(BloodBank bloodBank) {
 		bloodBankRepo.save(bloodBank) ;
 		}
-	    public BloodBank getBloodBankById(long id) {
+	    public BloodBank findById(Long id) {
 	    	return bloodBankRepo.findById(id).get();
 	    }
 	    public void deleteById(Long bkId) {
@@ -30,5 +30,6 @@ public class BloodBankService {
 	    public void update(BloodBank bloodBank, Long bkId) {
 	    	bloodBankRepo.save(bloodBank);
 	    }
+	    
 
 }

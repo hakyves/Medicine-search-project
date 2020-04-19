@@ -13,7 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="medi_shop")
 public class MedicalShop {
@@ -23,14 +22,12 @@ public class MedicalShop {
 	@Column
 	private String shopName;
 	@Column
+	private String state;
+	@Column
+	private String city;
+	@Column
 	private String address;
-	@Column
-	private String username;
-	@Column
-	private String email;
-	@Column
-	@JsonIgnore
-	private String password;
+
 	@Column
 	private boolean open247;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -39,7 +36,31 @@ public class MedicalShop {
 	@JoinColumn(name ="medecine_Id")		
 	})
 	private Set<Medicine> medicines;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "medShop_users", joinColumns = {
+	@JoinColumn(name = "medShop_Id")}, inverseJoinColumns = {
+	@JoinColumn(name ="user_Id")
+	})
+	private Set<Users> users;
 	
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public Set<Users> getUsers() {
+		return users;
+	}
+	public void setUsers(Set<Users> users) {
+		this.users = users;
+	}
 	public MedicalShop() {}
 	public Long getId() {
 		return id;
@@ -58,24 +79,6 @@ public class MedicalShop {
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public boolean isOpen247() {
 		return open247;

@@ -40,10 +40,13 @@ public class BloodController {
 		bloodService.saveOrUpdate(blood);
 		return blood;
 	}
+	
 	@PutMapping("/bloodupdate/{id}")
-	public Blood update(@RequestBody Blood blood) {
-		bloodService.saveOrUpdate(blood);
-		return blood;
+	public Blood updateBlood(@RequestBody Blood blood,@PathVariable("id") Long id) {
+		Blood bld = bloodService.findById(id);
+		bld.setBloodType(blood.getBloodType());
+		bld.setAmount(blood.getAmount());
+		bloodService.saveOrUpdate(bld);
+		return bld;
 	}
-
 }

@@ -1,5 +1,7 @@
 package com.hak.model;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,8 +23,7 @@ public class Medicine {
 	private int qty;
 	@Column
 	private double price;
-	
-	
+ 
    
 	public double getPrice() {
 		return price;

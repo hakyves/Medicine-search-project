@@ -1,9 +1,55 @@
 package com.hak.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+@Entity
+@Table(name ="users")
 public class Users {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	@Column
 	private String username;
+	@Column
+	private String email;
+	@Column
+	@JsonIgnore
 	private String password;
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name ="USER_ROLES", joinColumns ={
+	@JoinColumn(name = "USER_ID") },inverseJoinColumns = {
+	@JoinColumn(name = "ROLE_ID")})
+	private Set<Role> roles;
 	
 	public Users() {}
 
