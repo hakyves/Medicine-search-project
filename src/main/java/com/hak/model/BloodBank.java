@@ -20,18 +20,15 @@ import javax.persistence.*;
 		@Column
 		private String address;
 		@Column
+		private String phone;
+		@Column
 		private boolean open247;
-		@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-		@JoinTable(name = "Blood_BankShop", joinColumns = {
-		@JoinColumn(name = "Bloodbank_Id")}, inverseJoinColumns = {
-		@JoinColumn(name ="Blood_Id")		
-		})
+			
+		@OneToMany(targetEntity= Blood.class,cascade = CascadeType.ALL)
+		@JoinColumn(name="blood_fk",referencedColumnName ="id")
 		private Set<Blood> bloods;
-		@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-		@JoinTable(name = "bloodBank_users", joinColumns = {
-		@JoinColumn(name = "bloodBank_Id")}, inverseJoinColumns = {
-		@JoinColumn(name ="user_Id")
-		})
+		@OneToOne(targetEntity= Medicine.class,cascade = CascadeType.ALL)
+		@JoinColumn(name="user_fk",referencedColumnName ="id")
 		private Set<Users> users;
 		public String getState() {
 			return state;

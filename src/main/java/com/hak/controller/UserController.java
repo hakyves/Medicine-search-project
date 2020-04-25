@@ -23,19 +23,19 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value="/users", method = RequestMethod.GET)
 	public List<Users> listUser(){
 		return userService.findAll();
 	}
 	
-	@PreAuthorize("hasAnyRole('USER','ADMIN')")
+	//@PreAuthorize("hasAnyRole('USER','ADMIN')")
 	@RequestMapping(value="/users/{id}", method = RequestMethod.GET)
 	public Optional<Users> getOne(@PathVariable(value = "id") Long id) {
 		return userService.findById(id);
 	
 	}
-	@RequestMapping(value="/signup", method = RequestMethod.POST)
+	//@RequestMapping(value="/signup", method = RequestMethod.POST)
 	public Users saveUser(@RequestBody UserDto user) {
 		return userService.save(user);
 	}

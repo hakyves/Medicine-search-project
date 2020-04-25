@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hak.model.MedicalShop;
-
 import com.hak.service.impl.MedicalShopService;
 
 @RestController
@@ -18,11 +17,11 @@ public class MedicalShopController {
 	@Autowired
 	private MedicalShopService medicalShopService;
 	
-	@RequestMapping(value="/medicalshop", method = RequestMethod.GET)
+	@RequestMapping(value="/medicalshops", method = RequestMethod.GET)
 	public List<MedicalShop> listAllMedicalShop(){
 		return medicalShopService.findAll();
 	}
-	@RequestMapping(value="/medicalShop/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/medicalShopById/{id}", method = RequestMethod.GET)
 	public MedicalShop getOneShop(@PathVariable(value = "id") Long id) {
 		return medicalShopService.findById(id);
 	}
@@ -35,6 +34,8 @@ public class MedicalShopController {
 	public MedicalShop updateMedicalShop(@RequestBody MedicalShop medicalShop, @PathVariable("id") Long id) {
 		MedicalShop m = medicalShopService.findById(id);
 		m.setShopName(medicalShop.getShopName());
+		m.setCity(medicalShop.getCity());
+		m.setState(medicalShop.getState());
 		m.setAddress(medicalShop.getAddress());
 		m.setOpen247(medicalShop.isOpen247());
 		return medicalShopService.save(m);
@@ -44,4 +45,10 @@ public class MedicalShopController {
 		Long shopId = Long.parseLong(id);
 		medicalShopService.deleteById(shopId);;
 	}
+	@RequestMapping(value="/medicalShop/{shopName}", method = RequestMethod.GET)
+	public List<MedicalShop> findByName(MedicalShop medicalShop,@PathVariable("shopName") String shopName/*@PathVariable("city") String city*/){
+		List<MedicalShop> ms = (List<MedicalShop>) medicalShopService.findByName(shopName);	 
+		 return ms;
+	}
+
 }

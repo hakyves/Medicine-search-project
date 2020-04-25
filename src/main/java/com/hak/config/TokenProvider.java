@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import com.hak.model.Users;
+
 import static com.hak.model.Constants.ACCESS_TOKEN_VALIDITY_SECONDS;
 import static com.hak.model.Constants.AUTHORITIES_KEY;
 import static com.hak.model.Constants.SIGNING_KEY;

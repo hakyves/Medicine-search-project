@@ -2,7 +2,7 @@ package com.hak.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +37,10 @@ public class MedicalShopService  {
 	public void updateShop(MedicalShop medicalShop,Long shopId) {
 		medicShopRepo.save(medicalShop);
 	}
-
-
+	public List<MedicalShop> findByName(String shopName) {
+		List<MedicalShop> lst= medicShopRepo.findByShopName(shopName);
+    	return  lst;
+    	
+    }
 
 }

@@ -27,20 +27,15 @@ public class MedicalShop {
 	private String city;
 	@Column
 	private String address;
-
+    @Column
+    private String phone;
 	@Column
 	private boolean open247;
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "Medicine_MedShop", joinColumns = {
-	@JoinColumn(name = "medShop_Id")}, inverseJoinColumns = {
-	@JoinColumn(name ="medecine_Id")		
-	})
+	@OneToMany(targetEntity= Medicine.class,cascade = CascadeType.ALL)
+	@JoinColumn(name="med_fk",referencedColumnName ="id")
 	private Set<Medicine> medicines;
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "medShop_users", joinColumns = {
-	@JoinColumn(name = "medShop_Id")}, inverseJoinColumns = {
-	@JoinColumn(name ="user_Id")
-	})
+	@OneToOne(targetEntity= Users.class,cascade = CascadeType.ALL)
+	@JoinColumn(name="user_fk",referencedColumnName ="id")
 	private Set<Users> users;
 	
 	public String getState() {

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hak.model.Blood;
+import com.hak.model.BloodBank;
+import com.hak.service.impl.BloodBankService;
 import com.hak.service.impl.BloodService;
 
 @RestController
@@ -20,6 +22,8 @@ import com.hak.service.impl.BloodService;
 public class BloodController {
 	@Autowired
 	BloodService bloodService;
+	@Autowired
+	BloodBankService bloodBankService;
 	
 	@GetMapping("/bloods")
 	private List<Blood> getAllBloods(){
@@ -35,9 +39,12 @@ public class BloodController {
 		Long bloodId = Long.parseLong(id);
 		bloodService.deleteById(bloodId);
 	}
-	@PostMapping("/Addblood")
-	public Blood saveBlood(@RequestBody Blood blood) {
-		bloodService.saveOrUpdate(blood);
+	@PostMapping("/Addblood/{id}")
+	public Blood saveBlood(@RequestBody Blood blood,@PathVariable("id") Long id) {
+	
+		
+		
+		bloodService.saveOrUpdate(blood, id);
 		return blood;
 	}
 	
@@ -46,7 +53,7 @@ public class BloodController {
 		Blood bld = bloodService.findById(id);
 		bld.setBloodType(blood.getBloodType());
 		bld.setAmount(blood.getAmount());
-		bloodService.saveOrUpdate(bld);
+		bloodService.update(bld);
 		return bld;
 	}
 }

@@ -1,7 +1,6 @@
 package com.hak.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,9 +25,9 @@ public class MedicineController {
 	public List<Medicine> listAllMedicine(){
 		return medicineservice.findAll();
 	}
-	@PostMapping("/Addmedicine")
-	public Medicine addMedicine(@RequestBody Medicine medicine) {
-		 medicineservice.saveOrUpdate(medicine);
+	@PostMapping("/Addmedicine/{id}")
+	public Medicine addMedicine(@RequestBody Medicine medicine,@PathVariable("id") Long id) {
+		 medicineservice.saveOrUpdate(medicine,id);
 		 return medicine;	
 	}
 	@PutMapping("/updatemedicine/{id}")
@@ -39,7 +38,7 @@ public class MedicineController {
 	m.setName(medicine.getName());
 	m.setPrice(medicine.getPrice());
 	m.setQty(medicine.getQty());
-	medicineservice.saveOrUpdate(m);
+	medicineservice.update(m);
 	 return m;
 	}
 
@@ -48,14 +47,9 @@ public class MedicineController {
 		Long medId = Long.parseLong(id);
 		medicineservice.deleteById(medId);
 	}
-//	@RequestMapping(value="/medicines/{name}", method = RequestMethod.GET)
-//	public List<Medicine> findByName(@RequestBody Medicine medicine,@PathVariable("name") String name/*,@PathVariable("address") String address*/){
-//		List <Medicine> m = (List<Medicine>) medicineservice.findByName(name);	 
-//		 return m;
-//	}
 	@RequestMapping(value="/medicines/{name}", method = RequestMethod.GET)
 	public List<Medicine> findByName(Medicine medicine,@PathVariable("name") String name/*,@PathVariable("address") String address*/){
-		List <Medicine> m = (List<Medicine>) medicineservice.findByName(name);	 
+		List<Medicine> m = (List<Medicine>) medicineservice.findByName(name);	 
 		 return m;
 	}
 }

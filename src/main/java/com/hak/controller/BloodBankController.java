@@ -46,6 +46,8 @@ public class BloodBankController {
 	public BloodBank update(@RequestBody BloodBank bloodBank, @PathVariable("id") Long id) {
 		BloodBank bld = bloodBankService.findById(id);
 		bld.setBloodBankName(bloodBank.getBloodBankName());
+		bld.setState(bloodBank.getState());
+		bld.setCity(bloodBank.getCity());
 		bld.setAddress(bloodBank.getAddress());
 
 		bld.setOpen247(bloodBank.isOpen247());
